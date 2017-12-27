@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
 
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -90,55 +89,6 @@ public class RedisUtils {
      */
     private <T> T fromJson(String json, Class<T> clazz){
         return gson.fromJson(json, clazz);
-    }
-
-
-    /**
-     * zSetOperations
-     * zadd
-     */
-    public void zadd(String key,Object value, Double score){
-        zSetOperations.add(key, toJson(value),score);
-    }
-    /**
-     * zSetOperations
-     * zrem zremove
-     */
-    public Long zremove(String key,Object... values){
-        return zSetOperations.remove(key, values);
-    }
-
-    /**
-     * zSetOperations
-     * rank
-     * 获取zset成员的下标位置，如果值不存在返回null
-     */
-    public Long zrank(String key,Object value){
-        return zSetOperations.rank(key, value);
-    }
-    /**
-     * zSetOperations
-     * zrevrank
-     * 获取zset成员的下标位置，如果值不存在返回null
-     */
-    public Long zrevrank(String key,Object value){
-        return zSetOperations.reverseRank(key, value);
-    }
-    /**
-     * zSetOperations
-     * range
-     * 查看Zset指定范围的成员
-     */
-    public Set range(String key, long start, long end){
-        return zSetOperations.range(key, start,end);
-    }
-    /**
-     * zSetOperations
-     * range
-     * 查看Zset指定范围的成员
-     */
-    public Set rangeWithScores(String key, long start, long end){
-        return zSetOperations.rangeWithScores(key, start,end);
     }
 
 }
