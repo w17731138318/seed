@@ -1,7 +1,6 @@
 package com.pasq.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,8 +16,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @date 2017年11月29日
  */
 @Configuration
-@EnableCaching
-public class RedisConfig extends CachingConfigurerSupport {
+public class RedisConfig  {
     @Autowired
     private RedisConnectionFactory factory;
 

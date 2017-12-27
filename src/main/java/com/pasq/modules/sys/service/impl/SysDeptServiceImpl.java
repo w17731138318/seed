@@ -1,10 +1,10 @@
 package com.pasq.modules.sys.service.impl;
 
-import com.qiniu.util.StringUtils;
 import com.pasq.common.annotation.DataFilter;
 import com.pasq.modules.sys.dao.SysDeptDao;
 import com.pasq.modules.sys.entity.SysDeptEntity;
 import com.pasq.modules.sys.service.SysDeptService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
