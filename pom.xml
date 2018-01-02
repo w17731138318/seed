@@ -39,15 +39,19 @@
 		<joda.time.version>2.9.9</joda.time.version>
 		<guava.version>20.0</guava.version>
 		<commons.lang3.version>3.6</commons.lang3.version>
-		<!--自动化部署工具 未测试 -->
-		<!--&lt;!&ndash;wagon plugin 配置&ndash;&gt;-->
-		<!--<service-path>/work/file</service-path>-->
-		<!--<pack-name>${artifactId}-${version}.jar</pack-name>-->
-		<!--<remote-addr>192.168.1.10:22</remote-addr>-->
-		<!--<remote-username>root</remote-username>-->
-		<!--<remote-passwd>123456</remote-passwd>-->
-	</properties>
 
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.protostuff</groupId>
+				<artifactId>protostuff-bom</artifactId>
+				<version>1.5.6</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -173,18 +177,6 @@
 			<artifactId>joda-time</artifactId>
 			<version>${joda.time.version}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.protostuff/protostuff-core -->
-		<dependency>
-			<groupId>io.protostuff</groupId>
-			<artifactId>protostuff-core</artifactId>
-			<version>1.6.0</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.protostuff/protostuff-runtime -->
-		<dependency>
-			<groupId>io.protostuff</groupId>
-			<artifactId>protostuff-runtime</artifactId>
-			<version>1.6.0</version>
-		</dependency>
 		<dependency>
 			<groupId>org.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
@@ -201,16 +193,21 @@
 		</dependency>
 
 		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>2.7.0</version>
+			<groupId>io.protostuff</groupId>
+			<artifactId>protostuff-api</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.7.0</version>
+			<groupId>io.protostuff</groupId>
+			<artifactId>protostuff-core</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>io.protostuff</groupId>
+			<artifactId>protostuff-collectionschema</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.protostuff</groupId>
+			<artifactId>protostuff-runtime</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
