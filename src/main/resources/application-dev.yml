@@ -1,14 +1,16 @@
 spring:
+    autoconfigure:
+        exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.jdbc.Driver
         druid:
-            first:  #数据源1
-                url: jdbc:mysql://localhost:3306/pasq?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+            one:  #数据源1
+                url: jdbc:mysql://localhost:3306/test?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
                 username: root
                 password: root
-            second:  #数据源2
-                url: jdbc:mysql://localhost:3306/pasq1?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+            two:  #数据源2
+                url: jdbc:mysql://localhost:3306/test1?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
                 username: root
                 password: root
             initial-size: 10
