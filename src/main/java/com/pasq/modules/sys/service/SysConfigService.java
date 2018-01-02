@@ -46,19 +46,5 @@ public interface SysConfigService {
 	public int queryTotal(Map<String, Object> map);
 	
 	public SysConfigEntity queryObject(Long id);
-	
-	/**
-	 * 根据key，获取配置的value值
-	 * 
-	 * @param key           key
-	 */
-	public String getValue(String key);
-	
-	/**
-	 * 根据key，获取value的Object对象
-	 * @param key    key
-	 * @param clazz  Object对象
-	 */
-	public <T> T getConfigObject(String key, Class<T> clazz);
 
 }

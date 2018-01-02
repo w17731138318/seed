@@ -1,8 +1,6 @@
 package com.pasq.modules.custom.controller;
 
 import com.pasq.modules.sys.controller.AbstractController;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,7 +35,6 @@ public class TestController extends AbstractController {
 	 */
 	@GetMapping("/list")
 	@RequiresPermissions("test:list")
-	@ApiOperation(value="分页查询", notes="分页查询Test")
 	public R list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
@@ -56,8 +53,6 @@ public class TestController extends AbstractController {
 	 */
 	@GetMapping("/info/{id}")
 	@RequiresPermissions("test:info")
-	@ApiOperation(value="获取Test对象", notes="根据Test的ID查询")
-	@ApiImplicitParam(name = "id", value = "Test对象ID", required = true, dataType = "Long")
 	public R info(@PathVariable("id") Long id){
 		TestEntity test = testService.queryObject(id);
 		
@@ -69,8 +64,6 @@ public class TestController extends AbstractController {
 	 */
 	@PostMapping("/save")
 	@RequiresPermissions("test:save")
-	@ApiOperation(value="创建Test", notes="根据Test对象创建")
-	@ApiImplicitParam(name = "Test", value = "Test详细实体", required = true, dataType = "Test")
 	public R save(@RequestBody TestEntity test){
 		testService.save(test);
 		
@@ -82,8 +75,6 @@ public class TestController extends AbstractController {
 	 */
 	@PostMapping("/update")
 	@RequiresPermissions("test:update")
-	@ApiOperation(value="更新Test", notes="根据Test对象更新")
-	@ApiImplicitParam(name = "Test", value = "Test详细实体", required = true, dataType = "Test")
 	public R update(@RequestBody TestEntity test){
 		testService.update(test);
 		
@@ -95,8 +86,6 @@ public class TestController extends AbstractController {
 	 */
 	@DeleteMapping("/delete")
 	@RequiresPermissions("test:delete")
-	@ApiOperation(value="删除Test", notes="根据Test的ID删除")
-	@ApiImplicitParam(name = "ID", value = "Test对象的ID", required = true, dataType = "Long")
 	public R delete(@RequestBody Long[] ids){
 		testService.deleteBatch(ids);
 		

@@ -1,7 +1,6 @@
 package com.pasq.modules.sys.service.impl;
 
 import com.pasq.common.annotation.DataFilter;
-import com.pasq.common.utils.RedisUtils;
 import com.pasq.modules.sys.dao.SysUserDao;
 import com.pasq.modules.sys.entity.SysUserEntity;
 import com.pasq.modules.sys.service.SysUserRoleService;
@@ -36,8 +35,7 @@ public class SysUserServiceImpl implements SysUserService {
 	private SysUserDao sysUserDao;
 	@Autowired
 	private SysUserRoleService sysUserRoleService;
-	@Autowired
-	private RedisUtils redisUtils;
+
 
 	@Override
 	public List<String> queryAllPerms(Long userId) {

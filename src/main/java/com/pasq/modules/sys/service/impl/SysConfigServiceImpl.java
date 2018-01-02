@@ -25,21 +25,18 @@ public class SysConfigServiceImpl implements SysConfigService {
 	@Transactional
 	public void save(SysConfigEntity config) {
 		sysConfigDao.save(config);
-		sysConfigRedis.saveOrUpdate(config);
 	}
 
 	@Override
 	@Transactional
 	public void update(SysConfigEntity config) {
 		sysConfigDao.update(config);
-		sysConfigRedis.saveOrUpdate(config);
 	}
 
 	@Override
 	@Transactional
 	public void updateValueByKey(String key, String value) {
 		sysConfigDao.updateValueByKey(key, value);
-		sysConfigRedis.delete(key);
 	}
 
 	@Override
@@ -47,7 +44,6 @@ public class SysConfigServiceImpl implements SysConfigService {
 	public void deleteBatch(Long[] ids) {
 		for(Long id : ids){
 			SysConfigEntity config = queryObject(id);
-			sysConfigRedis.delete(config.getKey());
 		}
 
 		sysConfigDao.deleteBatch(ids);
@@ -66,30 +62,5 @@ public class SysConfigServiceImpl implements SysConfigService {
 	@Override
 	public SysConfigEntity queryObject(Long id) {
 		return sysConfigDao.queryObject(id);
-	}
-
-	@Override
-	public String getValue(String key) {
-		SysConfigEntity config = sysConfigRedis.get(key);
-		if(config == null){
-			config = sysConfigDao.queryByKey(key);
-			sysConfigRedis.saveOrUpdate(config);
-		}
-
-		return config == null ? null : config.getValue();
-	}
-	
-	@Override
-	public <T> T getConfigObject(String key, Class<T> clazz) {
-		String value = getValue(key);
-		if(StringUtils.isNotBlank(value)){
-			return new Gson().fromJson(value, clazz);
-		}
-
-		try {
-			return clazz.newInstance();
-		} catch (Exception e) {
-			throw new RRException("获取参数失败");
-		}
 	}
 }

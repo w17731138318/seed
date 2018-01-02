@@ -7,8 +7,8 @@ package com.pasq.datasources;
  * @email wangweixin@pasq.com
  * @date 2017年11月29日
  */
-public interface DataSourceNames {
-    String FIRST = "first";
-    String SECOND = "second";
-
+public interface DataSourceDB {
+    String ONE = "one";
+    String TWO = "two";
+    String THREE = "three";
 }

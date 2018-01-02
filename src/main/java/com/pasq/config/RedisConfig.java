@@ -3,13 +3,13 @@ package com.pasq.config;
 import com.pasq.common.utils.ProtoSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.CachingConfigurerSupport;
-import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.annotation.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.*;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * Redis配置
@@ -19,31 +19,26 @@ import org.springframework.data.redis.core.*;
  * @date 2017年11月29日
  */
 @Configuration
-@EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
+
     @Autowired
     private RedisConnectionFactory factory;
+
     @Bean
-    public CacheManager cacheManager(RedisTemplate redisTemplate) {
-        RedisCacheManager rcm = new RedisCacheManager(redisTemplate);
-       /* //设置缓存过期时间
-        // rcm.setDefaultExpiration(60);//秒
-        //设置value的过期时间
-        Map<String,Long> map=new HashMap();
-        map.put("test",60L);
-        rcm.setExpires(map);*/
-        return rcm;
-    }
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate() {
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
-        ProtoSerializer protoSerializer = new ProtoSerializer();
-        redisTemplate.setKeySerializer(protoSerializer);
-        redisTemplate.setHashKeySerializer(protoSerializer);
-        redisTemplate.setHashValueSerializer(protoSerializer);
-        redisTemplate.setValueSerializer(protoSerializer);
+        redisTemplate.setEnableTransactionSupport(true);
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(new ProtoSerializer());
         redisTemplate.setConnectionFactory(factory);
         return redisTemplate;
+    }
+
+    @Bean
+    public CacheManager cacheManager(RedisTemplate<String, Object> redisTemplate) {
+        RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
+        // cacheManager.setDefaultExpiration(300);
+        return cacheManager;
     }
 
     @Bean

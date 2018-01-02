@@ -6,7 +6,6 @@ import io.protostuff.ProtobufIOUtil;
 import io.protostuff.ProtostuffIOUtil;
 import io.protostuff.Schema;
 import io.protostuff.runtime.RuntimeSchema;
-import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -14,14 +13,18 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/11/29.
- */
+ * ProtoStuffUtils
+ * Protobuf 序列化工具类
+ * @author 王伟鑫
+ * @version 0.1v
+ * @create 2018-01-02 15:43
+ * @see
+ **/
 public class ProtoStuffUtils {
 	static final byte[] EMPTY_ARRAY = new byte[0];
 
 	/**
 	 * 序列化对象
-	 *
 	 * @param obj
 	 * @return
 	 */
@@ -36,7 +39,6 @@ public class ProtoStuffUtils {
 
 	/**
 	 * 反序列化
-	 *
 	 * @param bytes
 	 * @param targetClz
 	 * @return
@@ -53,7 +55,6 @@ public class ProtoStuffUtils {
 
 	/**
 	 * 序列化列表
-	 *
 	 * @param list
 	 * @return
 	 */
@@ -82,7 +83,6 @@ public class ProtoStuffUtils {
 
 	/**
 	 * 反序列化列表
-	 *
 	 * @param byteArr
 	 * @param targetClass
 	 * @return

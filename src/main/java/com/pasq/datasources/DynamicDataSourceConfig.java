@@ -20,13 +20,13 @@ import java.util.Map;
 public class DynamicDataSourceConfig {
 
     @Bean
-    @ConfigurationProperties("spring.datasource.druid.first")
+    @ConfigurationProperties("spring.datasource.druid.one")
     public DataSource firstDataSource(){
         return DruidDataSourceBuilder.create().build();
     }
 
     @Bean
-    @ConfigurationProperties("spring.datasource.druid.second")
+    @ConfigurationProperties("spring.datasource.druid.two")
     public DataSource secondDataSource(){
         return DruidDataSourceBuilder.create().build();
     }
@@ -35,8 +35,8 @@ public class DynamicDataSourceConfig {
     @Primary
     public DynamicDataSource dataSource(DataSource firstDataSource, DataSource secondDataSource) {
         Map<String, DataSource> targetDataSources = new HashMap<>();
-        targetDataSources.put(DataSourceNames.FIRST, firstDataSource);
-        targetDataSources.put(DataSourceNames.SECOND, secondDataSource);
+        targetDataSources.put(DataSourceDB.ONE, firstDataSource);
+        targetDataSources.put(DataSourceDB.TWO, secondDataSource);
         return new DynamicDataSource(firstDataSource, targetDataSources);
     }
 }

@@ -8,9 +8,14 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.SerializationException;
 
 /**
- * Created by Administrator on 2017/11/29.
- */
-public class ProtoSerializer  implements RedisSerializer<Object> {
+ * ProtoSerializer
+ *
+ * @author 王伟鑫
+ * @version 0.1v
+ * @create 2018-01-02 15:40
+ * @see
+ **/
+public class ProtoSerializer implements RedisSerializer<Object> {
 	static final byte[] EMPTY_ARRAY = new byte[0];
 
 	static final boolean isEmpty(byte[] data) {
