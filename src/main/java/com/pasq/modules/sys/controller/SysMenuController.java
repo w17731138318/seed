@@ -2,7 +2,6 @@ package com.pasq.modules.sys.controller;
 
 import com.pasq.common.annotation.SysLog;
 import com.pasq.common.exception.RRException;
-import com.pasq.common.utils.Constant;
 import com.pasq.common.utils.Constant.MenuType;
 import com.pasq.common.utils.R;
 import com.pasq.modules.sys.entity.SysMenuEntity;

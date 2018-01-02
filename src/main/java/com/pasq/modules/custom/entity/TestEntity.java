@@ -3,8 +3,6 @@ package com.pasq.modules.custom.entity;
 import com.pasq.common.utils.ToStringUtils;
 
 import java.io.Serializable;
-import java.util.Date;
-
 
 
 /**

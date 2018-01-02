@@ -3,7 +3,6 @@ package com.pasq.modules.job.task;
 import com.pasq.modules.sys.entity.SysUserEntity;
 import com.pasq.modules.sys.service.SysUserService;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -5,7 +5,6 @@ import com.pasq.common.exception.RRException;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
-import java.util.Iterator;
 import java.util.Set;
 
 /**
